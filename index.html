@@ -1,0 +1,121 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Train Scheduler</title>
+
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+
+    <!-- Google Font -->
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Javascript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+    <script src="assets/javascript/app.js"></script>
+  </head>
+
+  <body>
+    <!-- Header Card -->
+    <div class="row my-3 ">
+      <div class="col-10 mx-auto text-center ">
+        <div class="card bg-dark">
+          <div class="card-body p-5">
+            <h2 class="card-title text-light ">Train Scheduler</h2>
+            <h4 class="card-title text-light">
+              <!-- subtitle here -->
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Current Trains Schedule -->
+    <div class="row ">
+      <div class="col-10 mx-auto mt-3">
+        <div class="card">
+          <h5 class="card-header">Current Train Schedule</h5>
+          <div class="card-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Train Name</th>
+                  <th scope="col">Destination</th>
+                  <th scope="col">Frequency (min)</th>
+                  <th scope="col">Next Arrival</th>
+                  <th scope="col">Minutes Away</th>
+                </tr>
+              </thead>
+              <tbody id="tableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Add Employee Form -->
+    <div class="row mb-3">
+      <div class="col-10 mx-auto mt-3">
+        <div class="card">
+          <h5 class="card-header">Add Train</h5>
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <label>Train Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="trainName"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label>Destination</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="trainDest"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label>First Train Time(HH:mm - military time)</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="firstTrainTime"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label>Frequency (min)</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="trainFreq"
+                  required
+                />
+              </div>
+              <button id="formSubmit" type="submit" class="btn btn-primary">
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
