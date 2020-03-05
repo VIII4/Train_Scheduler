@@ -1,0 +1,8 @@
+Next Arrival and Minutes Away
+
+
+
+if current time is less than first train time:
+
+next arrival is equal to first train
+minutes away is diff between next arrival and current time
