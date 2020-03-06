@@ -6,3 +6,16 @@ if current time is less than first train time:
 
 next arrival is equal to first train
 minutes away is diff between next arrival and current time
+
+ct = current time
+ft = first time
+a = next time
+b = frequency
+
+a = ft
+IF (ct < a)
+    return a
+else
+    while(a < ct)
+        a += b
+    return a

@@ -54,29 +54,62 @@ function getInfo() {
   };
 }
 
+function nextTrain(trainData) {
+  //Get Current Time, First Time and Frequency
+  var currentTime = moment();
+  var firstTime = trainData.firstTrain;
+  var freq = trainData.trainFreq;
+
+  //Create Next Train Moment
+  var _nextTrain = moment(firstTime, "HH:mm");
+  if (currentTime < _nextTrain) {
+    console.log(
+      "Current Time is Less than Next Train so the Return Next Train"
+    );
+    return _nextTrain;
+  }
+  //
+  else {
+    console.log(
+      "Current Time has passed Next Train so add frequency until greater than current time, then return next train"
+    );
+    while (_nextTrain < currentTime) {
+      _nextTrain = _nextTrain.add(freq, "m");
+
+      console.log(
+        "incremeneted next train time to : " + _nextTrain.format("HH:mm")
+      );
+    }
+    console.log(_nextTrain);
+    return _nextTrain;
+  }
+}
+
 function createEmpRow(trainData) {
+  //Get Next Train
+  var _nextTrain = nextTrain(trainData);
   //Get Current Time
-  var nextTrain;
-  var currentTime = moment().format("HH:mm");
+  var currentTime = moment();
+  var minsAway = _nextTrain.diff(currentTime, "minutes");
 
-  //calc next train
-  //   if (currentTime > trainData.firstTrain) {
-  //   } else {
-  //     nextTrain = trainData.firstTrain;
-  //   }
-  //calc min away
+  //Format Times
+  _nextTrain = _nextTrain.format("HH:mm");
+  currentTime = currentTime.format("HH:mm");
+  console.log("current Time: " + currentTime + " Next Train: " + _nextTrain);
 
+  //Display Current Time
+  $("#currentTime").text("Current Time " + currentTime);
   //Create Empty Row
   var newRow = $("<tr>");
   //Create Data Cells with Data
   var nameCell = $("<td>").text(trainData.name);
   var destCell = $("<td>").text(trainData.destination);
   var freqCell = $("<td>").text(trainData.trainFreq);
-  var nextCell = $("<td>").text(/* Next Arrival */);
-  var minAwayCell = $("<td>").text(/* Mins Away */);
+  var nextCell = $("<td>").text(_nextTrain);
+  var minAwayCell = $("<td>").text("~ " + minsAway);
 
   newRow.append(nameCell, destCell, freqCell, nextCell, minAwayCell);
-  tableBody.prepend(newRow);
+  $("#tableBody").prepend(newRow);
 }
 
 //#endregion
@@ -124,7 +157,8 @@ database.ref().on("value", function(snapshot) {
 
 //Ran when data pushed
 database.ref().on("child_added", function(childSnapshot) {
-  //console.log(childSnapshot.val());
+  console.log(childSnapshot.val());
+  createEmpRow(childSnapshot.val());
 });
 
 //#endregion
