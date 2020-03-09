@@ -14,9 +14,9 @@ var panels = [];
 //#region Functions
 
 function getPanels() {
-  dashboardPanel = $(".dashboard-panel");
-  addTrainPanel = $(".add-train-panel");
-  historicPanel = $(".historic-data-panel");
+  dashboardPanel = $("#dashboard-panel");
+  addTrainPanel = $("#add-train-panel");
+  historicPanel = $("#historic-data-panel");
 
   var tempArray = [dashboardPanel, addTrainPanel, historicPanel];
   return tempArray;
@@ -174,8 +174,23 @@ $(document).ready(function() {
 
     //To do: Check all in panel array for matching ID
     panels.forEach(element => {
-      if (element.attr("id") === buttonData) {
-        console.log;
+      var temp = element.attr("id");
+
+      //button clicked equals element
+      if (temp === buttonData) {
+        //check Panel state is disabled
+        if (element.attr("data-display") === "disable") {
+          //Set panel as active, display show
+          element.attr("data-display", "active");
+          element.show();
+        }
+      } else {
+        //set panel as disable, hide
+        if (element.attr("data-display") === "active") {
+          //Set panel as active, display show
+          element.attr("data-display", "disable");
+          element.hide();
+        }
       }
     });
     //To do:
