@@ -71,17 +71,17 @@
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="#">
+                <a class="nav-link active side-bar-link" href="#" data-type="dashboard-panel">
                   Dashboard
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link side-bar-link" href="#" data-type="add-train-panel">
                   Add Trains
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link side-bar-link" href="#" data-type="historic-panel">
                   Historic Data
                 </a>
               </li>
@@ -132,7 +132,7 @@
             <div
               id="dashboard-panel"
               class="container py-3"
-              data-display="show"
+              data-display="active"
             >
               <!-- Dashboard -->
               <h1 class="h2">Dashboard</h2>
@@ -296,10 +296,11 @@
                 </table>
               </div>
             </div>
+            <!--  -->
             <div
               id="add-train-panel"
               class="container"
-              data-display="hide"
+              data-display="disable"
               style="display: none;"
             >
               <!-- Add Train Panel -->
@@ -358,10 +359,11 @@
                 </div>
               </div>
             </div>
+            <!--  -->
             <div
               id="historic-data-panel"
               class="container"
-              data-display="hide"
+              data-display="disable"
               style="display: none;"
             >
               <!-- Historic Data -->

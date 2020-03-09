@@ -3,10 +3,24 @@
 //#endregion
 
 //#region HTML Elements
+var dashboardPanel;
+var addTrainPanel;
+var historicPanel;
+
+var panels = [];
 
 //#endregion
 
 //#region Functions
+
+function getPanels() {
+  dashboardPanel = $(".dashboard-panel");
+  addTrainPanel = $(".add-train-panel");
+  historicPanel = $(".historic-data-panel");
+
+  var tempArray = [dashboardPanel, addTrainPanel, historicPanel];
+  return tempArray;
+}
 
 function getInfo() {
   var name = $("#trainName")
@@ -139,6 +153,9 @@ var database = firebase.database();
 //#region Events
 //On Page Load
 $(document).ready(function() {
+  // Get Elements and add to array
+  panels = getPanels();
+
   //On Submit Button
   $("#formSubmit").on("click", function(event) {
     event.preventDefault();
@@ -147,6 +164,24 @@ $(document).ready(function() {
 
     console.log(trainData);
     database.ref().push(trainData);
+  });
+
+  // Side bar nav link click
+  $(".side-bar-link").click(function() {
+    // Switch panel
+    //To do: Get which panel was clicked
+    var buttonData = $(this).attr("data-type");
+
+    //To do: Check all in panel array for matching ID
+    panels.forEach(element => {
+      if (element.attr("id") === buttonData) {
+        console.log;
+      }
+    });
+    //To do:
+    //To do:
+
+    //Check which button is clicked, find corresponding panel, set active, set other panels disable
   });
 });
 
