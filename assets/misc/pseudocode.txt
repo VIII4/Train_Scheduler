@@ -19,3 +19,10 @@ else
     while(a < ct)
         a += b
     return a
+
+
+
+
+    TO DO :
+    Switch Panels when side bar href clicked
+    C
