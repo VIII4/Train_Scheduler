@@ -31,95 +31,345 @@
   </head>
 
   <body>
-    <!-- Header Card -->
-    <header>
-      <div class="row no-gutters bg-success">
-        <div class="col">Test</div>
-      </div>
-    </header>
-    <div class="row my-3 ">
-      <div class="col-10 mx-auto text-center ">
-        <div class="card bg-dark">
-          <div class="card-body p-5">
-            <h1 class="card-title text-light ">Train Scheduler</h1>
-            <h4 id="currentTime" class="card-title text-light">
-              <!-- subtitle here -->
-            </h4>
+    <!-- Top Navigation Bar -->
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Tunnel Li</a>
+
+      <form class="form-inline my-2 my-lg-0">
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input
+          type="email"
+          id="inputEmail"
+          class="form-control"
+          placeholder="Email address"
+          required
+          autofocus
+        />
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input
+          type="password"
+          id="inputPassword"
+          class="form-control"
+          placeholder="Password"
+          required
+        />
+        <button
+          id="sign-in-button"
+          class="btn btn-secondary my-2 my-sm-0"
+          type="submit"
+        >
+          Sign In
+        </button>
+      </form>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Sidebar -->
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active side-bar-link" href="#" data-type="dashboard-panel">
+                  Dashboard
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link side-bar-link" href="#" data-type="add-train-panel">
+                  Add Trains
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link side-bar-link" href="#" data-type="historic-panel">
+                  Historic Data
+                </a>
+              </li>
+            </ul>
+
+            <h6
+              class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+            >
+              <span>Previous Trips</span>
+              <a class="d-flex align-items-center text-muted" href="#">
+                <span data-feather="plus-circle"></span>
+              </a>
+            </h6>
+            <ul class="nav flex-column mb-2">
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="file-text"></span>
+                  Cost
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="file-text"></span>
+                  Last quarter
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="file-text"></span>
+                  Social engagement
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="file-text"></span>
+                  Year-end sale
+                </a>
+              </li>
+            </ul>
           </div>
-        </div>
-      </div>
-    </div>
-    <!-- Current Trains Schedule -->
-    <div class="row ">
-      <div class="col-10 mx-auto mt-3">
-        <div class="card">
-          <h5 class="card-header">Current Train Schedule</h5>
-          <div class="card-body">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Train Name</th>
-                  <th scope="col">Destination</th>
-                  <th scope="col">Frequency (min)</th>
-                  <th scope="col">Next Arrival</th>
-                  <th scope="col">Minutes Away</th>
-                </tr>
-              </thead>
-              <tbody id="tableBody"></tbody>
-            </table>
+        </nav>
+        <!-- Main Content -->
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+          <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom"
+          >
+            <!-- Panels -->
+            <div
+              id="dashboard-panel"
+              class="container py-3"
+              data-display="active"
+            >
+              <!-- Dashboard -->
+              <h1 class="h2">Dashboard</h2>
+              
+              <!-- Train Destination Gallery -->
+              <div class="album bg-light py-1">
+                  
+                <div class="container">
+                  <div class="row">
+                    <!-- Trending Trips Gallery -->
+                    <div class="col-md-4">
+                      <div class="card mb-4 shadow-sm">
+                        <svg
+                          class="bd-placeholder-img card-img-top"
+                          width="100%"
+                          height="225"
+                          xmlns="http://www.w3.org/2000/svg"
+                          preserveAspectRatio="xMidYMid slice"
+                          focusable="false"
+                          role="img"
+                          aria-label="Placeholder: Thumbnail"
+                        >
+                          <title>Placeholder</title>
+                          <rect width="100%" height="100%" fill="#55595c" />
+                          <text x="50%" y="50%" fill="#eceeef" dy=".3em">
+                            Thumbnail
+                          </text>
+                        </svg>
+                        <div class="card-body">
+                          <p class="card-text">
+                            Train Destination and other info
+                          </p>
+                          <div
+                            class="d-flex justify-content-between align-items-center"
+                          >
+                            <div class="btn-group">
+                              <button
+                                type="button"
+                                class="btn btn-sm btn-outline-secondary"
+                              >
+                                View
+                              </button>
+                              <button
+                                type="button"
+                                class="btn btn-sm btn-outline-secondary"
+                              >
+                                Purchase
+                              </button>
+                            </div>
+                            <small id="train-distant" class="text-muted">9 mins away</small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                          <svg
+                            class="bd-placeholder-img card-img-top"
+                            width="100%"
+                            height="225"
+                            xmlns="http://www.w3.org/2000/svg"
+                            preserveAspectRatio="xMidYMid slice"
+                            focusable="false"
+                            role="img"
+                            aria-label="Placeholder: Thumbnail"
+                          >
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#55595c" />
+                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">
+                              Thumbnail
+                            </text>
+                          </svg>
+                          <div class="card-body">
+                            <p class="card-text">
+                              Train Destination and other info
+                            </p>
+                            <div
+                              class="d-flex justify-content-between align-items-center"
+                            >
+                              <div class="btn-group">
+                                <button
+                                  type="button"
+                                  class="btn btn-sm btn-outline-secondary"
+                                >
+                                  View
+                                </button>
+                                <button
+                                  type="button"
+                                  class="btn btn-sm btn-outline-secondary"
+                                >
+                                  Purchase
+                                </button>
+                              </div>
+                              <small id="train-distant" class="text-muted">9 mins away</small>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                          <svg
+                            class="bd-placeholder-img card-img-top"
+                            width="100%"
+                            height="225"
+                            xmlns="http://www.w3.org/2000/svg"
+                            preserveAspectRatio="xMidYMid slice"
+                            focusable="false"
+                            role="img"
+                            aria-label="Placeholder: Thumbnail"
+                          >
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#55595c" />
+                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">
+                              Thumbnail
+                            </text>
+                          </svg>
+                          <div class="card-body">
+                            <p class="card-text">
+                              Train Destination and other info
+                            </p>
+                            <div
+                              class="d-flex justify-content-between align-items-center"
+                            >
+                              <div class="btn-group">
+                                <button
+                                  type="button"
+                                  class="btn btn-sm btn-outline-secondary"
+                                >
+                                  View
+                                </button>
+                                <button
+                                  type="button"
+                                  class="btn btn-sm btn-outline-secondary"
+                                >
+                                  Purchase
+                                </button>
+                              </div>
+                              <small id="train-distant" class="text-muted">9 mins away</small>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Table Schedule -->
+              <h3>Todays Schedule</h3>
+              <div class="table-responsive">
+                <table class="table table-striped table-sm">
+                  <thead>
+                    <tr>
+                      <th scope="col">Train Name</th>
+                      <th scope="col">Destination</th>
+                      <th scope="col">Frequency (min)</th>
+                      <th scope="col">Next Arrival</th>
+                      <th scope="col">Minutes Away</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tableBody"></tbody>
+                </table>
+              </div>
+            </div>
+            <!--  -->
+            <div
+              id="add-train-panel"
+              class="container"
+              data-display="disable"
+              style="display: none;"
+            >
+              <!-- Add Train Panel -->
+              <div class="row mb-3">
+                <div class="col-10 mx-auto mt-3">
+                  <div class="card">
+                    <h5 class="card-header">Add Train</h5>
+                    <div class="card-body">
+                      <form>
+                        <div class="form-group">
+                          <label>Train Name</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="trainName"
+                            required
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label>Destination</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="trainDest"
+                            required
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label>First Train Time(HH:mm - military time)</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="firstTrainTime"
+                            required
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label>Frequency (min)</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="trainFreq"
+                            required
+                          />
+                        </div>
+                        <button
+                          id="formSubmit"
+                          type="submit"
+                          class="btn btn-primary"
+                        >
+                          Submit
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--  -->
+            <div
+              id="historic-data-panel"
+              class="container"
+              data-display="disable"
+              style="display: none;"
+            >
+              <!-- Historic Data -->
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <!-- Add Employee Form -->
-    <div class="row mb-3">
-      <div class="col-10 mx-auto mt-3">
-        <div class="card">
-          <h5 class="card-header">Add Train</h5>
-          <div class="card-body">
-            <form>
-              <div class="form-group">
-                <label>Train Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="trainName"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label>Destination</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="trainDest"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label>First Train Time(HH:mm - military time)</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="firstTrainTime"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label>Frequency (min)</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="trainFreq"
-                  required
-                />
-              </div>
-              <button id="formSubmit" type="submit" class="btn btn-primary">
-                Submit
-              </button>
-            </form>
-          </div>
-        </div>
+        </main>
       </div>
     </div>
   </body>
