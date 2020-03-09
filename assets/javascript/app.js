@@ -168,11 +168,15 @@ $(document).ready(function() {
 
   // Side bar nav link click
   $(".side-bar-link").click(function() {
-    // Switch panel
-    //To do: Get which panel was clicked
+    //Deactivate all links
+    $(".side-bar-link").removeClass("active");
+    //Activate clicked link
+    $(this).addClass("active");
+
+    //Get which panel was clicked
     var buttonData = $(this).attr("data-type");
 
-    //To do: Check all in panel array for matching ID
+    //Check all in panel array for matching ID
     panels.forEach(element => {
       var temp = element.attr("id");
 
@@ -193,10 +197,6 @@ $(document).ready(function() {
         }
       }
     });
-    //To do:
-    //To do:
-
-    //Check which button is clicked, find corresponding panel, set active, set other panels disable
   });
 });
 
