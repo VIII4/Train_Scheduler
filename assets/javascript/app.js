@@ -7,6 +7,11 @@ var dashboardPanel;
 var addTrainPanel;
 var historicPanel;
 
+//TO DO: add additional panels from side bar
+//var yearoverYearPanel;
+//var engagementPanel;
+//....
+
 var panels = [];
 
 //#endregion
@@ -17,6 +22,8 @@ function getPanels() {
   dashboardPanel = $("#dashboard-panel");
   addTrainPanel = $("#add-train-panel");
   historicPanel = $("#historic-data-panel");
+
+  //TO DO: add additional panels from side bar
 
   var tempArray = [dashboardPanel, addTrainPanel, historicPanel];
   return tempArray;
